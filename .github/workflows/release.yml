@@ -1,7 +1,9 @@
 name: Java CI - Build Release
 
 on:
-  workflow_dispatch:
+  release:
+    types: [ created ]
+    
 jobs:
   build:
 
@@ -26,7 +28,7 @@ jobs:
       run: ./gradlew build
       
     - name: Release
-      uses: softprops/action-gh-release@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         files: |
           forge/build/libs/ftb-teams-forge-2001.3.0.jar
