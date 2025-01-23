@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Represents the teams and known players that the client knows about; one global instance exists on the client.
@@ -150,6 +151,7 @@ public class ClientTeamManagerImpl implements ClientTeamManager {
 	// 				userId, String.join(",", knownPlayers.keySet().stream().map(UUID::toString).toList()));
 	// 	}
 	// }
+	
 	public void initSelfDetails(UUID selfTeamID) {
 		selfTeam = teamMap.get(selfTeamID);
 		String username = Minecraft.getInstance().getUser().getGameProfile().getName();
@@ -157,7 +159,7 @@ public class ClientTeamManagerImpl implements ClientTeamManager {
 		selfKnownPlayer = knownPlayers.get(userId);
 		FTBTeams.LOGGER.debug("Client userId: {}", userId);
 		knownPlayers.forEach((uuid, player) -> {
-			FTBTeams.LOGGER.debug("Known player UUID: {}, Name: {}", uuid, player.name);
+			FTBTeams.LOGGER.debug("Known player UUID: {}, Name: {}", uuid, player.name());
 		});
 		if (selfKnownPlayer == null) {
 			FTBTeams.LOGGER.warn("Local player id {} was not found in the known players list [{}]! FTB Teams will not be able to function correctly!",
