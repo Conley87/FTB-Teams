@@ -30,6 +30,6 @@ jobs:
     - name: Release
       uses: svenstaro/upload-release-action@v2
       with:
-        files: |
+        file: |
           forge/build/libs/ftb-teams-forge-2001.3.0.jar
           fabric/build/libs/ftb-teams-fabric-2001.3.0.jar
